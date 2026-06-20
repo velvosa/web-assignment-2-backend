@@ -5,6 +5,9 @@ import createError from "http-errors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import serviceRoutes from "./routes/serviceRoutes.js";
+import referenceRoutes from "./routes/referenceRoutes.js";
+import projectRoutes from "./routes/projectRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 
@@ -26,6 +29,11 @@ app.get("/", (req, res) => {
     });
 });
 app.use("/api/services", serviceRoutes);
+app.use("/api/references", referenceRoutes);
+app.use("/api/projects", projectRoutes);
+app.use("/api/users", userRoutes);
+
+
 // 404 handler
 app.use((req, res, next) => {
     next(createError(404, "Route not found"));
